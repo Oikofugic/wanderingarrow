@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+    <title>Dream Portal</title>
+    <!--<link href="dream.css" type="text/css" rel="stylesheet" />-->
+  
+
+
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="magic-master/magic.css">
+
+  <style type="text/css">  
+
+  	body {
+	     background-image: url("images/shoppingcartwater.gif");
+	     background-size: "width"=1920px, "height"=1080px; 
+	       }
+
+	#dreamImage {display: block; width:100%; padding: 0; margin:0; background-image: url("images/shoppingcartwater.gif"); background-size: 100% ; background-repeat:no-repeat;}
+
+	#left{
+/*	display: relative; */	
+	display: inline-block;
+	margin-top: 50%; 
+	margin-left: 5%; 
+	width: 100px;
+  cursor:pointer
+/*	height: 97px; 
+*/	}
+
+	#right{
+	display: inline-block; 
+	margin-top: 50%; 
+	margin-left: 70%; 
+	width: 100px;
+  cursor:pointer
+
+	}
+
+@keyframes 
+fadein { from {
+transform:scale(0, 0);
+}
+
+to { transform: scale(1, 1); }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes 
+fadein { from {
+transform:scale(0, 0);
+}
+
+to { transform: scale(1, 1); }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes 
+fadein { from {
+transform:scale(0, 0);
+}
+
+to { transform: scale(1, 1); }
+}
+
+/* Internet Explorer */
+@-ms-keyframes 
+fadein { from {
+transform:scale(0, 0);
+}
+
+to { transform: scale(1, 1); }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes 
+fadein { from {
+transform:scale(0, 0);
+}
+}
+@keyframes 
+fadein2 { from {
+transform:scale(1, 1);
+}
+
+to { transform: scale(0, 0); }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes 
+fadein2 { from {
+transform:scale(1, 1);
+}
+
+to { transform: scale(0, 0); }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes 
+fadein2 { from {
+transform:scale(1, 1);
+}
+
+to { transform: scale(0, 0); }
+}
+
+/* Internet Explorer */
+@-ms-keyframes 
+fadein2 { from {
+transform:scale(1, 1);
+}
+
+to { transform: scale(0, 0); }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes 
+fadein2 { from {
+transform:scale(1, 1);
+}
+}
+
+body {
+  background: #000000;
+  transition: all 4s;
+  overflow-x: hidden;
+  margin: 0 0 0 0;
+  font-family: Raleway; 
+}
+
+.hover { transform: scale(50, 50); }
+
+.rect1,
+.rect2,
+.rect3 {
+  /*-webkit-transition: all 800ms cubic-bezier(0.980, 0.005, 0.000, 0.995);
+  -moz-transition: all 800ms cubic-bezier(0.980, 0.005, 0.000, 0.995);
+  -o-transition: all 800ms cubic-bezier(0.980, 0.005, 0.000, 0.995);
+  transition: all 800ms cubic-bezier(0.980, 0.005, 0.000, 0.995); /* custom */
+}
+
+.Menu {
+  background: #c4c9cc;
+  width: 200px;
+  /*-webkit-transition: all 100ms cubic-bezier(0.980, 0.005, 0.000, 0.995);
+  -moz-transition: all 100ms cubic-bezier(0.980, 0.005, 0.000, 0.995);
+  -o-transition: all 100ms cubic-bezier(0.980, 0.005, 0.000, 0.995);
+  transition: all 100ms cubic-bezier(0.980, 0.005, 0.000, 0.995); /* custom */
+  height: 200px;
+  border-radius: 50%;
+  z-index: 99;
+  float: right;
+  margin-right: -155px;
+  margin-top: -100px;
+}
+
+.Menu2 {
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
+  position: absolute;
+}
+
+#menulogo {
+  margin-right: 25px;
+  position: relative;
+  z-index: 999;
+  float: right;
+  /*-webkit-transition: all 100ms cubic-bezier(0.000, 1, 0.985, 0.990); /* older webkit */
+  /*-webkit-transition: all 100ms cubic-bezier(0.000, 1.650, 0.985, 0.990);
+  -moz-transition: all 100ms cubic-bezier(0.000, 1.650, 0.985, 0.990);
+  -o-transition: all 100ms cubic-bezier(0.000, 1.650, 0.985, 0.990);
+  transition: all 100ms cubic-bezier(0.000, 1.650, 0.985, 0.990); /* custom */
+  margin-top: 25px;
+}
+
+#menulogo:hover { -webkit-transform: scale(1.1, 1.1); }
+
+#menulogo:hover { cursor: pointer; }
+
+/*#home {
+  height: 100vh;
+  margin-top: -65px;
+  width: 100%;
+  background-image: url("images/shoppingcartwater.gif");
+  background-position: center;
+  background-size: cover;
+  font-family: 'Helvetica Neue', Arial, Helvetica, 'Nimbus Sans L', sans-serif;
+  text-transform: uppercase;
+  background-attachment: fixed;
+}
+
+#home h1 {
+  text-align: center;
+  color: #FFF;
+  text-shadow: 0px 2px 0px rgba(0,0,0,0.5);
+  padding-top: 32vh;
+  font-size: 8vh;
+}*/
+
+.allMenu {
+  width: 100%;
+  height: 50px;
+  position: fixed;
+}
+
+ul {
+  position: absolute;
+  z-index: 9999;
+  margin-top: -1400px;
+  /*-webkit-transition: all 800ms cubic-bezier(0.980, 0.005, 0.000, 0.995);
+  -moz-transition: all 800ms cubic-bezier(0.980, 0.005, 0.000, 0.995);
+  -o-transition: all 800ms cubic-bezier(0.980, 0.005, 0.000, 0.995);
+  transition: all 800ms cubic-bezier(0.980, 0.005, 0.000, 0.995); /* custom */
+  margin-left: auto;
+  margin-right: auto;
+  margin-right: 200px;
+  width: 80%;
+}
+
+ul li {
+  display: inline-block;
+  float: right;
+  /*-webkit-transition: all 400ms cubic-bezier(0.980, 0.005, 0.000, 0.995);
+  -moz-transition: all 400ms cubic-bezier(0.980, 0.005, 0.000, 0.995);
+  -o-transition: all 400ms cubic-bezier(0.980, 0.005, 0.000, 0.995);
+  transition: all 400ms cubic-bezier(0.980, 0.005, 0.000, 0.995); /* custom */
+  margin-left: -4px;
+  padding-left: 80px;
+  padding-right: 80px;
+  height: 100px;
+  line-height: 100px;
+}
+
+ul li:hover {
+  background: grey;
+  transform: scale(1, 1);
+  box-shadow: 5px 1px 10px rgba(0,0,0,0);
+}
+
+ul li a {
+  font-family: Raleway, sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #000;
+  font-weight: 700;
+}
+
+ul li a:hover { cursor: pointer; }
+
+	</style>
+</head>
+
+<body id="dreamImage">
+
+<div class="allMenu">
+  <ul class="ul">
+    <li class="lia"><a href="dreams.html" class="li">Home</a></li>
+    <li class="lia"><a href="about.html" class="li">About</a></li>
+    <li class="lia"><a href="participate.html" class="li">Participate</a></li>
+    <li class="lia"><a href="sitemap.html" class="li">Site Map</a></li>
+  </ul>
+  <div class="Menu2"> <svg version="1.1" id="menulogo" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="40px" height="36px" viewbox="0 0 40 36" enable-background="new 0 0 40 40" xml:space="preserve">
+    <rect class="rect1" fill="#FFF" width="40" height="5.392"/>
+    <rect class="rect2" x="0" y="12" fill="#FFF" width="40" height="5.393" />
+    <rect class="rect3" x="0" y="24" fill="#FFF" width="40" height="5.393"/>
+    </svg>
+    <div class="Menu"> </div>
+  </div>
+</div>
+<section id="home" data-type="background" data-speed="10">
+  <div class="header">
+  </div>
+</section>
+<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script> 
+<script>
+$(document).ready(function() {
+	var $Menu = $('.Menu');
+    $('#menulogo').click(function() {
+		if($Menu.hasClass('hover')){
+		$Menu.removeClass('hover');
+				$('.rect1').css('opacity','1');
+		$('.rect2').css('transform','rotate(0deg) translate(0px, 0px)');
+		$('.rect3').css('transform','rotate(0deg) translate(0px, 0px)');
+		$('#menulogo').css('margin-top','25px');
+				$('.ul').css('margin-top','-1400px');
+		}else{
+		$Menu.addClass('hover');
+		$('.rect1').css('opacity','0');
+		$('.rect2').css('transform','rotate(45deg) translate(6px, -15px)');
+		$('.rect3').css('transform','rotate(-45deg) translate(-20px, 0px)');
+		$('.ul').css('margin-top','0px');
+		$('#menulogo').css('margin-top','35px');
+		
+			}
+    });	
+});
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+
+
+<audio loop id="music" src="audio/ambientstreet.mp3"
+   autoplay>
+<p>Your browser does not support the audio element.</p>
+  </audio> 
+
+<div id="left"> 
+  <img src="images/door.png" width="100%" onclick="next()"> 
+ </div> 
+
+
+<div id="right"> 
+  <img src="images/door2.png" width="100%" onclick="next()"> 
+ </div> 
+
+ 
+
+<script type="text/javascript">
+//these are your global variables that are shared between functions
+var snd = document.getElementById('music'); 
+var b = document.getElementById('dreamImage'); 
+var imgDir = "images/";
+var sndDir = "audio/"; 
+var imgArray = ["spirals", "fenceslow", "snow", "babyplant", "city", "grassforever", "birdsmall", "skysmall", "path", "branches"];
+var usedimg =[]; 
+var usedsnd =[];
+var arrayIndex = 0;
+var imgExt = ".gif";
+var audioExt = ".mp3"; 
+var n =0; 
+var sndArray = ["family", "searchingfollowing", "mice", "baby", "espanol", "chasedbybigfoot", "flying", "deceaseddad", "schoolboy2", "talkshow"];
+
+
+function next(){-
+	snd.pause(); 
+	console.log("button pressed");
+
+	// n = Math.floor(Math.random()*imgArray.length); 
+	// arrayIndex = n; 
+	// console.log("the image array is " + arrayIndex);
+	// audio/family.mp3
+
+    var myrandomnumber = Math.floor(Math.random()*imgArray.length); 
+    console.log("index is " + myrandomnumber);
+    var imgvalue = imgArray[myrandomnumber]; 
+    var sndvalue = sndArray[myrandomnumber];
+    usedimg.push(imgvalue);
+    usedsnd.push(sndvalue);
+    //the push method adds the value to the used array
+    console.log("the length of the used img array is "+usedimg.length);
+    console.log(imgArray);
+    imgArray.splice(myrandomnumber,1);
+    sndArray.splice(myrandomnumber,1);
+    //the splice array method subtracts the value at the index slot from the img array
+    console.log(imgArray);
+    if (imgArray.length === 0) {
+        //if the img array is empty then fill it
+        console.log("imgArray is empty"); 
+        imgArray = usedimg;
+        usedimg = [];
+        //this switches the values between them and sets used to empty
+    }
+    if (sndArray.length === 0) {
+        //if the img array is empty then fill it
+        console.log("sndArray is empty"); 
+        sndArray = usedsnd;
+        usedsnd = [];
+        //this switches the values between them and sets used to empty
+    }
+    //an alternate way of writing the conditional above is if(!setting.length){}
+    
+
+      snd.src = sndDir+sndvalue+audioExt; 
+      snd.play(); 
+      // var alltogether = imgDir+imgArray[arrayIndex]+imgExt;
+      // b.style.backgroundImage= "url("+alltogether+")"; 
+
+      b.style.backgroundImage= "url("+imgDir+imgvalue+imgExt+")"; 
+
+    return value;
+
+
+
+
+}
+
+
+
+/*function previous(){
+
+	n = Math.floor(Math.random()*imgArray.length); 	
+	arrayIndex = n; 
+	console.log("the image array is " + arrayIndex);
+
+	snd.pause(); 
+	snd.src = sndDir+sndArray[arrayIndex]+audioExt;
+	snd.play(); 
+	b.style.backgroundImage="url("+imgDir+imgArray[arrayIndex]+imgExt+")";
+}*/
+
+</script>
+
+</body>
+</html>
