@@ -1,0 +1,95 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Belleza', sans-serif;
+  margin: 25px;
+  background-color: #000;
+  color: #FFF;
+}
+
+a {
+  color: #BBB;
+  text-decoration: none;
+}
+
+h1 {
+  font-weight: 300;
+}
+
+ul {
+  padding: 0;
+}
+
+#logo {
+  width: 200px;
+}
+
+#menu {
+  text-align: left;
+}
+
+#menu li {
+  display: inline-block;
+  padding: 5px 20px 5px 0px;
+}
+main {
+
+}
+
+.long-arrow{
+  position: relative;
+  left: -3px;
+}
+
+.f115 {
+  font-size: 125%;
+  font-weight: bold;
+}
+
+.arrow {
+  font-size: 150%;
+}
+
+#upload-form input {
+  display: block;
+  margin: .5em;
+}
+
+/* Bio */
+
+#bio {
+  max-width: 1024px;
+  width: 100%;
+  margin: 1em auto;
+}
+
+#bio #left {
+  width: 50%;
+  display: inline-block;
+  padding: 0 2%;
+  margin: 0;
+  vertical-align: top;
+}
+
+#bio #right {
+  width: 49%;
+  display: inline-block;
+  padding: 0 2%;
+  margin: 0;
+}
+
+#bio img {
+  width: 100%;
+}
+
+@media screen and (max-width: 800px) {
+    #bio #left {
+      width: 100%;
+    }
+
+    #bio #right {
+      width: 100%;
+    }
+}

@@ -1,0 +1,28 @@
+<div id="cv">
+    
+  ${data.map(section => `
+    <h2>
+      ${section.title}
+    </h2>
+    <br>
+    <ul>
+      ${section.data.map(item => `
+        <h3>
+          ${item.name}
+        </h3>
+        <p>
+          <strong>${item.location}</strong>, 📅${item.date}
+        </p>
+        <h4>
+          
+        </h4>
+        <p>
+          ${item.description}  
+        </p>
+        <br>
+      `).join('')}  
+    </ul>
+    <br>
+  `).join('')}
+  
+</div>
