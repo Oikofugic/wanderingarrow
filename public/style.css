@@ -3,23 +3,49 @@
 }
 
 body {
-  font-family: 'Belleza', sans-serif;
-  margin: 25px;
+  font-family: "Buda", sans-serif;
+  font-weight: 300;
+  margin: 25px 25px 50px;
   background-color: #000;
-  color: #FFF;
+  color: #CCC;
+  font-size: 120%;
+  line-height: 130%;
+  
 }
 
 a {
-  color: #BBB;
+  color: #BBB; 
+}
+
+img {
+  margin-top: 1em;
+}
+
+#menu a, header a{
   text-decoration: none;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Belleza", sans-serif;
+  color: #ddd;
+}
+
 h1 {
-  font-weight: 300;
+  font-size: 200%;
+  line-height: 120%;
 }
 
 ul {
   padding: 0;
+}
+
+/* class="wrap" */
+.wrap {
+  max-width: 850px;
+}
+
+.wrap700 {
+  max-width: 700px;
 }
 
 #logo {
@@ -33,9 +59,6 @@ ul {
 #menu li {
   display: inline-block;
   padding: 5px 20px 5px 0px;
-}
-main {
-
 }
 
 .long-arrow{
@@ -57,15 +80,31 @@ main {
   margin: .5em;
 }
 
-/* Bio */
-
-#bio {
-  max-width: 1024px;
-  width: 100%;
-  margin: 1em auto;
+#upload-image {
+  max-width: 800;
 }
 
-#bio #left {
+/* About, Disordered */
+
+#about-photo {
+ max-width:  300px;
+}
+
+.disordered-photo {
+  width: 90%;
+  padding: 10px;
+  max-width: 584px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#about, #disordered, #the-illuminator {
+  max-width: 1200px;
+  width: 100%;
+  margin: 1em 1% 1em 1%;
+}
+
+#left {
   width: 50%;
   display: inline-block;
   padding: 0 2%;
@@ -73,23 +112,102 @@ main {
   vertical-align: top;
 }
 
-#bio #right {
+#right {
   width: 49%;
   display: inline-block;
   padding: 0 2%;
   margin: 0;
 }
 
-#bio img {
+#right img {
   width: 100%;
 }
 
-@media screen and (max-width: 800px) {
-    #bio #left {
+/* # is ID, and . is class */
+
+ul.installation-list {
+  list-style-type: none;
+}
+
+
+ul.music-list li {
+  display: inline-block;
+  margin: 0 10px;
+  vertical-align: top;
+}
+
+.video-section {
+  margin-bottom: 3em;
+}
+
+.video-embed {
+  margin-top: 2em;
+}
+
+.video-screenings ul, .video-description ul {
+  margin-left: 20px;
+}
+
+#cv { 
+  line-height: 140%;
+  /*font-family: sans-serif;*/
+}
+
+#cv h2 {
+  /* CV Section Header */
+  margin: 5px 0 5px;
+  color: #ddd;
+}
+
+#cv .cv-data {
+  /* CV Data Row */
+  margin: 0 15px 25px;
+}
+
+#cv h3 {
+  /* CV Data Row Title */
+  margin: 10px 0 5px;
+  /*color: #ddd;*/
+}
+
+#cv h4 {
+  /* CV Data Row Date */
+  margin: 5px 0 5px;
+  color: #ccc;
+  /* margin: top  right bottom  left; */
+  /* margin: top  left/right  bottom; */
+  /* margin: top/bottom  left/right; */
+}
+
+#cv .cv-description {
+  /* CV Data Row Description (Including Lists) */
+  margin: 5px 0 5px;
+}
+
+#cv ul {
+  /* CV Data Row Description List */
+  /* 17px margin top/bottom currently */
+  margin: 0 0 0;
+}
+
+#cv li {
+  /* CV Data Row Description with <ul><li> hard coded in spreadsheet */
+  margin: 0 15px 0;
+}
+
+
+/* These rules only apply when the screen is less than 700px wide (phones) */
+@media screen and (max-width: 700px) {
+    #left {
       width: 100%;
     }
 
-    #bio #right {
+    #right {
       width: 100%;
+    }
+  
+    iframe {
+      max-width: 100%;
+      max-height: 200px;
     }
 }

@@ -1,3 +1,19 @@
-<p>
-  This is the music page.
-</p>
+<ul class="music-list">
+  {{#each data}}
+    <li>
+      <h2>
+        {{this.band}}
+      </h2>
+      <h3>
+        {{this.album}} - {{this.date}}
+      </h3>
+      <p>
+        {{{this.members}}}
+      </p>
+        {{{this.embed}}}
+
+  
+  
+    </li>
+  {{/each}}
+</ul>

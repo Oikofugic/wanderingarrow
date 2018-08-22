@@ -1,3 +1,20 @@
-<p>
-  Hi, look at these installations!
-</p>
+<ul class="installation-list">
+  {{#each data}}
+    <li>
+      <h2>
+        {{this.title}}
+      </h2>
+      <p class="wrap"> 
+        {{{this.description}}}
+      </p>
+      
+      <p class="wrap">
+           {{this.year}} - {{this.exhibitions}}
+      </p>
+      
+      {{{this.embed}}}
+    </li>
+  <br>
+  <br>
+  {{/each}}
+</ul>
