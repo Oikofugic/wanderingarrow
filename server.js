@@ -3,7 +3,7 @@
 
 // init project
 var express = require('express');
-var es6Renderer = require('express-es6-template-engine');
+var hbs = require('hbs');
 var app = express();
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
@@ -27,10 +27,20 @@ var memoryUpload = multer({
 	}
 }).single("file");
 
-// Data:
-var cv = require(__dirname + "/data/cv");
+// Google Spreadsheet
+var GoogleSpreadsheet = require('google-spreadsheet');
+var SPREADSHEET_URL = "https://docs.google.com/spreadsheets/d/1AE0SArt-eBt38KZ4ztqlpid_XgyPKtAp8PG7jI_kKWs/edit#gid=1726922142";
+var DEFAULT_TAB                 = 0; // Could also use the name of a tab like "Trees", or null for no default and just links
+var INCLUDE_TIMESTAMP           = false;
+var sheets = require('./modules/sheets');
+var SPREADSHEET_KEY = SPREADSHEET_URL.substr(39, SPREADSHEET_URL.length).split("/")[0];
+sheets.SPREADSHEET_KEY = SPREADSHEET_KEY;
+sheets.INCLUDE_TIMESTAMP = INCLUDE_TIMESTAMP;
 
 // http://expressjs.com/en/starter/static-files.html
+// This makes it so that anything you put in the /public folder will work like a regular web server.
+// If you put a file called rachel.html in public whatever you add to that file will show up at:
+// www.websiteaddress.com/rachel.html
 app.use(express.static('public'));
 
 // Use Body Parser to process requests
@@ -38,10 +48,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-// Express ES6 Template Engine Settings: https://www.npmjs.com/package/express-es6-template-engine
-app.engine('html', es6Renderer);
-app.set('views', 'views');
+// hbs Template Engine Settings: https://www.npmjs.com/package/hbs.
+// This is telling it what to do with non-js files, particularly the html.
 app.set('view engine', 'html');
+app.engine('html', require('hbs').__express);
 
 
 
@@ -58,110 +68,95 @@ var UploadSchema = new Schema({
 
 var Upload = mongoose.model("Upload", UploadSchema);
 
+function getDataFromSheetAndSendToTemplate(request, response, spreadsheetTab, viewTemplate) {
+  sheets.getData(spreadsheetTab)
+  //declaring sheetdata below, logging it, and "rendering" it which is sending it to the template
+  .then(function(sheetData) {
+    console.log(sheetData.rows);
+    response.render(viewTemplate, {
+        title: ': ' + sheetData.currentWorksheet.title,
+        data: sheetData.rows
+      }
+    );
+    return;
+  })
+  .catch(function(error) {
+    response.send("Error: " + error);
+  }); 
+}
 
-// Home page
+
+// About page
 app.get("/", function (request, response) {
-  response.render('index', {
-    locals: {
-      title:  ''
-    },
-    partials: {
-      template: 'views/home.html'
-    }
-  });
+  getDataFromSheetAndSendToTemplate(request, response, "About", "about");
 });
-
-
-// Bio page
-app.get("/bio", function (request, response) {
-    var bioText = "Rachel is an educator and interdisciplinary media artist. She currently works for Mouse, a youth development nonprofit that believes in technology as a force for good, and is a member of The Illuminator, a political projection collective based in NYC. Rachel is also an avid cyclist, yogi and wanderer. Presently, she is pursuing an MFA in Integrated Media Arts at Hunter College (CUNY).";
-    var bioImage = "https://wanderingarrows.s3.amazonaws.com/10-8-2017-20:24:46-IMG_8620.jpg";
-    response.render('index', {
-    locals: {
-      title: ': Bio',
-      image: bioImage,
-      text: bioText
-    },
-    partials: {
-      template: 'views/bio.html'
-    }
-  });
-});
+app.get("/about", function(request, response) {
+  response.redirect("/");
+})
 
 // CV page
-
 app.get("/cv", function (request, response) {
-    //console.log(data);
-    var title = "CV";
-  
-    response.render('index', {
-    locals: {
-      title: ': ' + title,
-      data: cv
-    },
-    partials: {
-      template: 'views/cv.html'
-    }
-  });
+    getDataFromSheetAndSendToTemplate(request, response, "CV", "cv");
 });
+
+// Disordered page
+app.get("/disordered", function (request, response) {
+  getDataFromSheetAndSendToTemplate(request, response, "Disordered", "disordered");
+});
+
 
 // Installations page
 app.get("/installations", function (request, response) {
-    response.render('index', {
-    locals: {
-      title: ': Installations'
-    },
-    partials: {
-      template: 'views/installations.html'
-    }
-  });
+  getDataFromSheetAndSendToTemplate(request, response, "Installations", "installations");
 });
 
 // Music
+app.get("/music", function (request, response) {
+  getDataFromSheetAndSendToTemplate(request, response, "Music", "music");
+});
+
 
 // Photography page
 app.get("/photography", function (request, response) {
-    response.render('index', {
-    locals: {
-      title: ': Photography'
-    },
-    partials: {
-      template: 'views/photography.html'
-    }
+  response.render('photography', {
+    title: ': Photography'
   });
 });
 
-// The Illuminator
+// The Illuminator page
+app.get("/the-illuminator", function (request, response) {
+  getDataFromSheetAndSendToTemplate(request, response, "Illuminator", "the-illuminator");
+});
+
+app.get("/illuminator", function(request, response) {
+  response.redirect("/the-illuminator");
+});
 
 // Video
-
-
-// Web page
-app.get("/web", function (request, response) {
-    response.render('index', {
-    locals: {
-      title: ': Web'
-    },
-    partials: {
-      template: 'views/web.html'
-    }
-  });
+app.get("/video", function (request, response) {
+    getDataFromSheetAndSendToTemplate(request, response, "Video", "video");
 });
 
-// Writing
 
+// Web / Dreams / doesn't need code because it's its own page at public/dreams/index.html
+
+
+// Writing
+app.get("/writing", function (request, response) {
+    response.render('writing', {
+      title: ': Writing'
+    });
+});
+
+
+// Below here is routes relating to the file upload functionality that connects to Amazon S3
 
 
 // Upload Test:
 app.get("/upload", function(request, response) {
-  response.render("index", {
-    locals: {
+  response.render("upload", {
       title: ": Upload"
-    },
-    partials: {
-      template: "views/upload.html"
-   }
-  });
+    });
 });
 
 app.post("/upload", memoryUpload, function(request, response) {
@@ -197,16 +192,16 @@ app.post("/upload", memoryUpload, function(request, response) {
           project: "website",
         }
         var dbUpload = new Upload(newUpload);
-        
-        
+          
         dbUpload.save(function(err) {
           if (err) {
             response.status(400);
             response.send("Error saving to Database");
           } else {
             response.status(200);
-            response.send("<img src='https://wanderingarrows.s3.amazonaws.com/" + params.Key +
-                      "'><a href='https://wanderingarrows.s3.amazonaws.com/" + params.Key +
+            response.send("<link rel='stylesheet' href='/style.css'>" +
+                      "<img id='upload-image' src='https://wanderingarrows.s3.amazonaws.com/" + params.Key +
+                      "'><br><a href='https://wanderingarrows.s3.amazonaws.com/" + params.Key +
                       "'>https://wanderingarrows.s3.amazonaws.com/" + params.Key + "</a><p>Is a " + filetype + " file.");
           }
         });
@@ -223,7 +218,6 @@ app.post("/upload", memoryUpload, function(request, response) {
     response.status(400);
     response.send("Error: " + errorMessage);
   }
-
 });
 
 app.get("/uploads", function(request, response) {
