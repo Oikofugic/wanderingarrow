@@ -5,7 +5,8 @@
 var express = require('express');
 var hbs = require('hbs');
 var app = express();
-var mongoose = require('mongoose');
+// Not using MongoDB anymore
+//var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var AWS = require('aws-sdk');
 var uuid = require('node-uuid');
@@ -55,18 +56,18 @@ app.engine('html', require('hbs').__express);
 
 
 
-var db;
-db = mongoose.connect(process.env.MONGODB_URI);
-var Schema = mongoose.Schema;
+// var db;
+// db = mongoose.connect(process.env.MONGODB_URI);
+// var Schema = mongoose.Schema;
 
-var UploadSchema = new Schema({
-  url            : String,
-  filetype       : String,
-  uploadDate     : Date,
-  project        : String
-});
+// var UploadSchema = new Schema({
+//   url            : String,
+//   filetype       : String,
+//   uploadDate     : Date,
+//   project        : String
+// });
 
-var Upload = mongoose.model("Upload", UploadSchema);
+//var Upload = mongoose.model("Upload", UploadSchema);
 
 function getDataFromSheetAndSendToTemplate(request, response, spreadsheetTab, viewTemplate) {
   sheets.getData(spreadsheetTab)
@@ -87,11 +88,11 @@ function getDataFromSheetAndSendToTemplate(request, response, spreadsheetTab, vi
 
 
 function fallback(request, response) {
- response.render('about', {
-   title: ': About',
-   hideMenu: true,
-   data: [{
-     text: `Rachel is an educator and interdisciplinary media artist. Since 2014, Rachel has been a member of The Illuminator, a political projection collective based in NYC. She has an MFA in Integrated Media Arts from Hunter College (CUNY), and is an avid cyclist, yogi and wanderer. 
+  response.render('about', {
+    title: ': About',
+    hideMenu: true,
+    data: [{
+      text: `Rachel is an educator and interdisciplinary media artist. Since 2014, Rachel has been a member of The Illuminator, a political projection collective based in NYC. She has an MFA in Integrated Media Arts from Hunter College (CUNY), and is an avid cyclist, yogi and wanderer. 
 <br>
 <br>
 IG: <a href="https://www.instagram.com/oikofugicrchl/" target="blank">@oikofugicrchl</a>
@@ -99,9 +100,9 @@ IG: <a href="https://www.instagram.com/oikofugicrchl/" target="blank">@oikofugic
 TW: <a href="https://twitter.com/wanderingarrows" target="blank">@wanderingarrows</a>
 <br>
 Email: info at wanderingarrow.com`,
-     photo: {url:'https://wanderingarrows.s3.amazonaws.com/21-9-2018-18:50:5-respiratorselfie2.jpg'}
-   }]
- }); 
+    photo: {url:'https://wanderingarrows.s3.amazonaws.com/21-9-2018-18:50:5-respiratorselfie2.jpg'}
+    }]
+  });
 }
 
 
@@ -204,26 +205,28 @@ app.post("/upload", memoryUpload, function(request, response) {
         errorMessage = err;
       } else {
         
-        var newUpload = {
-          url: "https://wanderingarrows.s3.amazonaws.com/" + params.Key,
-          filetype: filetype,
-          uploadDate: date,
-          project: "website",
-        }
-        var dbUpload = new Upload(newUpload);
+        // Not saving uploads in db anymore
+
+        // var newUpload = {
+        //   url: "https://wanderingarrows.s3.amazonaws.com/" + params.Key,
+        //   filetype: filetype,
+        //   uploadDate: date,
+        //   project: "website",
+        // }
+        // var dbUpload = new Upload(newUpload);
           
-        dbUpload.save(function(err) {
-          if (err) {
-            response.status(400);
-            response.send("Error saving to Database");
-          } else {
-            response.status(200);
-            response.send("<link rel='stylesheet' href='/style.css'>" +
-                      "<img id='upload-image' src='https://wanderingarrows.s3.amazonaws.com/" + params.Key +
-                      "'><br><a href='https://wanderingarrows.s3.amazonaws.com/" + params.Key +
-                      "'>https://wanderingarrows.s3.amazonaws.com/" + params.Key + "</a><p>Is a " + filetype + " file.");
-          }
-        });
+        // dbUpload.save(function(err) {
+        //   if (err) {
+        //     response.status(400);
+        //     response.send("Error saving to Database");
+        //   } else {
+        //     response.status(200);
+        //     response.send("<link rel='stylesheet' href='/style.css'>" +
+        //               "<img id='upload-image' src='https://wanderingarrows.s3.amazonaws.com/" + params.Key +
+        //               "'><br><a href='https://wanderingarrows.s3.amazonaws.com/" + params.Key +
+        //               "'>https://wanderingarrows.s3.amazonaws.com/" + params.Key + "</a><p>Is a " + filetype + " file.");
+        //   }
+        // });
 
       }
 
