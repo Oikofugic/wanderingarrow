@@ -5,13 +5,13 @@
   <div id="right">
     {{#each data}}
       {{#if this.featured}}
-        <img class="disordered-featured-photo" src="{{this.photo.url}}">
+        <img class="disordered-featured-photo" src="{{this.photo}}">
       {{/if}}
     {{/each}}
   </div>
   {{#each data}}
     {{#unless this.featured}}
-      <img class="disordered-photo" src="{{this.photo.url}}">
+      <img class="disordered-photo" src="{{this.photo}}">
     {{/unless}}
   {{/each}}
 </div>
