@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Rachel Brown{{title}}</title>
+    <title>Rachel Brown: {{title}}</title>
     <meta name="description" content="Rachel Brown - Wandering Arrow">
-    <link id="favicon" rel="icon" href="https://wanderingarrows.s3.amazonaws.com/22-8-2018-18:58:5-favicon.ico" type="image/x-icon">
+    <link id="favicon" rel="icon" href="/images/22-8-2018-18_58_5-favicon.ico" type="image/x-icon">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,11 +14,10 @@
     <header>
       <a href="/">
         <h1>
-          Rachel Brown{{title}}
+          Rachel Brown: {{title}}
         </h1>
       </a>
     </header>
-    <!--<img id="logo" src="https://cdn.glitch.com/cca2e652-63d5-402c-b5d8-d6d756c9a684%2Fwandering-arrow-logo-700.png?1495646444802">-->
     {{#unless hideMenu}}
     <ul id="menu">
       <a href="/"><li><span class="arrow">↬</span> About</li></a>
@@ -35,7 +34,7 @@
     </ul>
     {{/unless}}
     
-    <main>{{{ body }}}</main>
+    <main>{{{ content }}}</main>
 
     <!-- Your web-app is https, so your scripts need to be too -->
     <script src="https://code.jquery.com/jquery-2.2.1.min.js"
