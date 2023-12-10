@@ -150,6 +150,7 @@ ul.music-list li {
 
 #cv { 
   line-height: 140%;
+  margin: 1em 1% 1em 1%;
   /*font-family: sans-serif;*/
 }
 
@@ -182,6 +183,9 @@ ul.music-list li {
 #cv .cv-description {
   /* CV Data Row Description (Including Lists) */
   margin: 5px 0 5px;
+}
+#cv p {
+  margin: 15px 0 15px;
 }
 
 #cv ul {
