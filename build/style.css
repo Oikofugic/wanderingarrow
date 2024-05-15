@@ -84,16 +84,24 @@ ul {
   max-width: 800;
 }
 
-/* About, Disordered */
+/* About, Disordered, Resistance */
 
 #about-photo {
  max-width:  300px;
 }
 
-.disordered-photo {
+#disordered-photo {
   width: 90%;
   padding: 10px;
   max-width: 584px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#resistance-photo {
+  width: 90%;
+  padding: 10px;
+  max-width: 500px;
   display: inline-block;
   vertical-align: middle;
 }
