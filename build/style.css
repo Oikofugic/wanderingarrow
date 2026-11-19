@@ -58,6 +58,10 @@ ul {
 
 #menu li {
   display: inline-block;
+}
+
+#menu a {
+  display: inline-block;
   padding: 5px 20px 5px 0px;
 }
 
