@@ -1,4 +1,9 @@
+const handlebarsPlugin = require("@11ty/eleventy-plugin-handlebars");
+
 module.exports = function (eleventyConfig) {
+  // Handlebars was removed from Eleventy core in v3; it now ships as a plugin.
+  eleventyConfig.addPlugin(handlebarsPlugin);
+
   // Merge data in .json files in directories with data in each file
   eleventyConfig.setDataDeepMerge(true);
 
